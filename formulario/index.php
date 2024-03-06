@@ -1,23 +1,60 @@
+<?php 
+  if(isset($_POST['submit']))
+  { /*
+   print_r('Name: ' . $_POST['name']);
+    print_r('<br>');
+    print_r('Email: ' . $_POST['email']);
+    print_r('<br>');
+    print_r('Phone: ' . $_POST['phone']);
+    print_r('<br>');
+    print_r('Sexo: ' . $_POST['gender']);
+    print_r('<br>');
+    print_r('Age: ' . $_POST['data_nascimento']);
+    print_r('<br>');
+    print_r('City: ' . $_POST['city']);
+    print_r('<br>');
+    print_r('State: ' . $_POST['state']);
+    print_r('<br>');
+    print_r('Adress: ' . $_POST['adress']); */
+
+    include_once('config.php');
+
+    $name =  $_POST['name']; 
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $sexo = $_POST['gender'];
+    $data_nasc = $_POST['data_nascimento'];
+    $city =  $_POST['city'];
+    $state = $_POST['state'];
+    $adress = $_POST['adress'];
+
+    $result = mysqli_query($conexao, "INSERT INTO usuarios (name,email,phone,sexo,data_nasc,city,state,adress) 
+    VALUES('$name','$email','$phone','$sexo','$data_nasc','$city','$state','$adress') ");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../Project/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Form</title>
   </head>
   <body>
-    <form class="form">
+    
+<div class="box"> 
+    <form class="form"  action="index.php" method="POST" >
       <div class="title">Welcome,<br /><span>sign up to continue</span></div>
       <input type="email" placeholder="Email" name="email" class="input" />
-      <input type="password" placeholder="Password" name="password" class="input"/>
-      <input type="tel" placeholder="Phone" name="Phone" class="input">
+      <input type="text" placeholder="Full Name" name="name" class="input"/>
+      <input type="tel" placeholder="Phone" name="phone" class="input">
      
       <div class="radio-container">
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input id="option1" name="radio-group" type="radio">
+            <input type="radio" name="gender" id="option1" value="Male"  >
             <span class="radio-checkmark"></span>
             <span class="radio-label">Male</span>
           </label>
@@ -25,7 +62,7 @@
       
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input id="option2" name="radio-group" type="radio">
+            <input type="radio"  name="gender" id="option2" value="Female" >
             <span class="radio-checkmark"></span>
             <span class="radio-label">Female</span>
           </label>
@@ -33,15 +70,19 @@
       
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input id="option3" name="radio-group" type="radio">
+            <input type="radio"  name="gender" id="option3" value="Other">
             <span class="radio-checkmark"></span>
             <span class="radio-label">Other</span>
           </label>
         </div>
       </div>
-      
-      <label for="data_nascimento" id="data_nascimento"><b>Data de Nascimento:</b></label>
-      <input type="date" name="data_nascimento" id="data_nascimento" required>
+    <div>
+        <label for="data_nascimento"><b>Age:</b></label>
+        <input type="date" name="data_nascimento" id="data_nascimento" required>
+    </div>
+      <input type="text" placeholder="City" name="city" class="input"/>
+      <input type="text" placeholder="State" name="state" class="input"/>
+      <input type="text" placeholder="Adress" name="adress" class="input"/>
 
       <div class="login-with">
         <div class="button-log"></div>
@@ -84,7 +125,10 @@
           </svg>
         </div>
       </div>
-      <button class="button-confirm">Let`s go →</button>
+      <button type="submit" name="submit" class="button-confirm">Submit</button>
+      <a href="./home.php">Register</a>
     </form>
+</div>
+
   </body>
 </html>

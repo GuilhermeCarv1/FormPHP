@@ -1,3 +1,12 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    margin-right: 380px;
+    background-color: #cccfd2;
+  }
+
 .form {
     --input-focus: #2d8cf0;
     --font-color: #323232;
@@ -19,6 +28,7 @@
     box-shadow: 4px 4px var(--main-color);
   }
   
+  
   .title {
     color: var(--font-color);
     font-weight: 900;
@@ -33,8 +43,8 @@
   }
   
   .input {
-    width: 250px;
-    height: 40px;
+    width: 200px;
+    height: 15px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
     background-color: var(--bg-color);
@@ -55,8 +65,8 @@
     border: 2px solid var(--input-focus);
   }
   .radio-container {
-    margin: 0 10px;
-    max-width: 300px;
+    margin: 0 5px;
+    max-width: 100px;
    color: #323232;
   }
   
@@ -112,11 +122,11 @@
   }
   #data_nascimento{
     border: none;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 8px;
+    border-radius: 10px;
     outline: none;
-    font-size: 17px;
-    color: rgb(16, 14, 14);
+    font-size: 15px;
+
 }
   
   .login-with {
