@@ -69,7 +69,7 @@ body {
  <form class="form">
         <div class="title">Welcome</div>
         <div class="box">
-            <a href="">Login</a>
+            <a href="./login.php">Login</a>
             <a href="./index.php">Register</a>
         </div>
  </form>

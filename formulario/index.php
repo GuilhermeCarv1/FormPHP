@@ -43,6 +43,7 @@
     <title>Form</title>
   </head>
   <body>
+    <a href="./home.php">Back</a>
     
 <div class="box"> 
     <form class="form"  action="index.php" method="POST" >
@@ -50,6 +51,7 @@
       <input type="email" placeholder="Email" name="email" class="input" />
       <input type="text" placeholder="Full Name" name="name" class="input"/>
       <input type="tel" placeholder="Phone" name="phone" class="input">
+      <input type="password" placeholder="Password" name="Password" class="input">
      
       <div class="radio-container">
         <div class="radio-wrapper">
@@ -126,7 +128,6 @@
         </div>
       </div>
       <button type="submit" name="submit" class="button-confirm">Submit</button>
-      <a href="./home.php">Register</a>
     </form>
 </div>
 

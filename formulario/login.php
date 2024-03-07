@@ -16,6 +16,11 @@
   }
 
 
+  a {
+  text-decoration: none;
+ }
+ 
+
         .form {
   --input-focus: #2d8cf0;
   --font-color: #323232;
@@ -121,8 +126,8 @@
 
 </head>
 <body>
-
-    <form class="form">
+    <form action="testlogin.php" method="POST" class="form">  
+      <a href="./home.php">Back</a>
         <div class="title">Welcome,<br><span>sign up to continue</span></div>
         <input type="email" placeholder="Email" name="email" class="input">
         <input type="password" placeholder="Password" name="password" class="input">
@@ -135,7 +140,7 @@
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="56.693px" viewBox="0 0 56.693 56.693" version="1.1" id="Layer_1" height="56.693px" class="icon"><path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z"></path></svg>
           </div>
         </div>
-        <button class="button-confirm">Let`s go →</button>
+        <button type="submit" name="submit" class="button-confirm">Submit</button>
       </form>
 </body>
 </html>
