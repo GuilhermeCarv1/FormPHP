@@ -21,6 +21,7 @@
 
     $name =  $_POST['name']; 
     $email = $_POST['email'];
+    $password = $_POST['password'];
     $phone = $_POST['phone'];
     $sexo = $_POST['gender'];
     $data_nasc = $_POST['data_nascimento'];
@@ -28,8 +29,10 @@
     $state = $_POST['state'];
     $adress = $_POST['adress'];
 
-    $result = mysqli_query($conexao, "INSERT INTO usuarios (name,email,phone,sexo,data_nasc,city,state,adress) 
-    VALUES('$name','$email','$phone','$sexo','$data_nasc','$city','$state','$adress') ");
+    $result = mysqli_query($conexao, "INSERT INTO usuarios (name,email,password,phone,sexo,data_nasc,city,state,adress) 
+    VALUES('$name','$email','$password','$phone','$sexo','$data_nasc','$city','$state','$adress') ");
+
+    header('Location: login.php');
   }
 ?>
 
@@ -41,9 +44,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <title>Form</title>
+
+    <style>
+      .navbar{
+        top:0;
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        background: white;
+        color:black;
+      }
+      a {
+        color: black;
+        font-size: 20px;
+        margin: 15px 20px;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+
+      .button-back {
+         background-color: white;
+         color: red;
+         margin: 8px 30px;
+         border-radius: 10em;
+         font-size: 12px;
+         font-weight: 600;
+         padding: 1em 2em;
+         cursor: pointer;
+         transition: all 0.2s ease-in-out;
+         border: 1px solid red;
+         box-shadow: 0 0 0 0 red;
+      }
+
+      .button-back:hover {
+      transform: translateY(-4px) translateX(-2px);
+      box-shadow: 2px 5px 0 0 red;
+      }
+      .button:active {
+      transform: translateY(2px) translateX(1px);
+      box-shadow: 0 0 0 0 red;
+     }
+    </style>
+
+
   </head>
   <body>
-    <a href="./home.php">Back</a>
+  <nav class="navbar">
+    <div class="container">
+      <a  class="navbar-brand">Register </a>
+      <div class="d-flex">
+          <a href="./home.php">
+              <button class="button-back" type="submit">Back</button>
+          </a>
+      </div>
+    </div>
+  </nav>
+    
     
 <div class="box"> 
     <form class="form"  action="index.php" method="POST" >
@@ -51,7 +110,7 @@
       <input type="email" placeholder="Email" name="email" class="input" />
       <input type="text" placeholder="Full Name" name="name" class="input"/>
       <input type="tel" placeholder="Phone" name="phone" class="input">
-      <input type="password" placeholder="Password" name="Password" class="input">
+      <input type="password" placeholder="Password" name="password" class="input">
      
       <div class="radio-container">
         <div class="radio-wrapper">

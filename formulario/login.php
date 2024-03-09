@@ -14,32 +14,74 @@
     margin: 150px;
     background-color: #cccfd2;
   }
+  .navbar{
+        top:0;
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        background: white;
+        color:black;
+      }
+
+      a {
+        color: black;
+        font-size: 20px;
+        margin: 15px 20px;
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
 
 
-  a {
-  text-decoration: none;
- }
+      .button-back {
+         background-color: white;
+         color: red;
+         margin: 8px 30px;
+         border-radius: 10em;
+         font-size: 12px;
+         font-weight: 600;
+         padding: 1em 2em;
+         cursor: pointer;
+         transition: all 0.2s ease-in-out;
+         border: 1px solid red;
+         box-shadow: 0 0 0 0 red;
+      }
+
+      .button-back:hover {
+      transform: translateY(-4px) translateX(-2px);
+      box-shadow: 2px 5px 0 0 red;
+      }
+      .button:active {
+      transform: translateY(2px) translateX(1px);
+      box-shadow: 0 0 0 0 red;
+     }
  
 
-        .form {
-  --input-focus: #2d8cf0;
-  --font-color: #323232;
-  --font-color-sub: #666;
-  --bg-color: #fff;
-  --main-color: #323232;
-  padding: 20px;
-  background: lightgrey;
-  width: 300px;
+ .form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    padding: 30px;
+    background: lightgrey;
+    width: 300px;
     display: flex;
-    position: absolute;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  border-radius: 5px;
-  border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
-}
+    position:absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%);
+   /* margin: 100px 700px; */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+  }
+  
 
 .title {
   color: var(--font-color);
@@ -126,10 +168,19 @@
 
 </head>
 <body>
+<nav class="navbar">
+    <div class="container">
+      <a  class="navbar-brand">Register </a>
+      <div class="d-flex">
+          <a href="./home.php">
+              <button class="button-back" type="submit">Back</button>
+          </a>
+      </div>
+    </div>
+  </nav>
     <form action="testlogin.php" method="POST" class="form">  
-      <a href="./home.php">Back</a>
-        <div class="title">Welcome,<br><span>sign up to continue</span></div>
-        <input type="email" placeholder="Email" name="email" class="input">
+        <div class="title">Login in to continue<br><span></span></div>
+        <input type="text" placeholder="Name" name="name" class="input"/>
         <input type="password" placeholder="Password" name="password" class="input">
         <div class="login-with">
           <div class="button-log"></div>
