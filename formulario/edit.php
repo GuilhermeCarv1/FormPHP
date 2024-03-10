@@ -1,39 +1,44 @@
 <?php 
-  if(isset($_POST['submit']))
-  { /*
-   print_r('Name: ' . $_POST['name']);
-    print_r('<br>');
-    print_r('Email: ' . $_POST['email']);
-    print_r('<br>');
-    print_r('Phone: ' . $_POST['phone']);
-    print_r('<br>');
-    print_r('Sexo: ' . $_POST['gender']);
-    print_r('<br>');
-    print_r('Age: ' . $_POST['data_nascimento']);
-    print_r('<br>');
-    print_r('City: ' . $_POST['city']);
-    print_r('<br>');
-    print_r('State: ' . $_POST['state']);
-    print_r('<br>');
-    print_r('Adress: ' . $_POST['adress']); */
-
+  if(!empty($_GET['id']))
+  { 
     include_once('config.php');
 
-    $name =  $_POST['name']; 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $phone = $_POST['phone'];
-    $sexo = $_POST['gender'];
-    $data_nasc = $_POST['data_nascimento'];
-    $city =  $_POST['city'];
-    $state = $_POST['state'];
-    $adress = $_POST['adress'];
+    $id = $_GET['id'];
 
-    $result = mysqli_query($conexao, "INSERT INTO usuarios (name,email,password,phone,sexo,data_nasc,city,state,adress) 
-    VALUES('$name','$email','$password','$phone','$sexo','$data_nasc','$city','$state','$adress') ");
+    $sqlSelect = "SELECT * FROM usuarios WHERE id=$id";
 
-    header('Location: login.php');
+    $result = $conexao->query($sqlSelect);
+
+    if($result->num_rows > 0)
+    {
+
+      while($user_data = mysqli_fetch_assoc($result))
+    {
+      $name =  $user_data['name']; 
+      $email =$user_data['email'];
+      $password = $user_data['password'];
+      $phone = $user_data['phone'];
+      $sexo = $user_data['sexo'];
+      $data_nasc = $user_data['data_nasc'];
+      $city =  $user_data['city'];
+      $state = $user_data['state'];
+      $adress = $user_data['adress'];
+
+    }
+   
+   }
+
+    else 
+    {
+      header('Location: system.php');
+    }
   }
+  
+  else 
+  {
+    header('Location: system.php');
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +68,10 @@
         display: flex;
         justify-content: space-between;
       }
+      .full{
+        padding: 15px;
+
+      }
 
 
       .button-back {
@@ -87,6 +96,7 @@
       transform: translateY(2px) translateX(1px);
       box-shadow: 0 0 0 0 red;
      }
+   
     </style>
 
 
@@ -96,7 +106,7 @@
     <div class="container">
       <a  class="navbar-brand">Register </a>
       <div class="d-flex">
-          <a href="./home.php">
+          <a href="./system.php">
               <button class="button-back" type="submit">Back</button>
           </a>
       </div>
@@ -105,17 +115,17 @@
     
     
 <div class="box"> 
-    <form class="form meugrande"  action="index.php" method="POST" >
+    <form class="form"  action="saveEdit.php" method="POST" >
       <div class="title">Welcome,<br /><span>sign up to continue</span></div>
-      <input type="email" placeholder="Email" name="email" class="input" />
-      <input type="text" placeholder="Full Name" name="name" class="input"/>
-      <input type="tel" placeholder="Phone" name="phone" class="input">
-      <input type="password" placeholder="Password" name="password" class="input">
+      <input type="email" placeholder="Email" name="email" class="input full" value="<?php echo $email?>" />
+      <input type="text" placeholder="Full Name" name="name" class="input full" value="<?php echo $name?>"/>
+      <input type="tel" placeholder="Phone" name="phone" class="input full" value="<?php echo $phone?>">
+      <input type="text" placeholder="Password" name="password" class="input full" value="<?php echo $password?>" >
      
       <div class="radio-container">
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input type="radio" name="gender" id="option1" value="Male"  >
+            <input type="radio" name="gender" id="option1" value="Male" <?php echo ($sexo == 'Male') ? 'checked' : '' ?> >
             <span class="radio-checkmark"></span>
             <span class="radio-label">Male</span>
           </label>
@@ -123,7 +133,7 @@
       
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input type="radio"  name="gender" id="option2" value="Female" >
+            <input type="radio"  name="gender" id="option2" value="Female"  <?php echo ($sexo == 'Female') ? 'checked' : '' ?> >
             <span class="radio-checkmark"></span>
             <span class="radio-label">Female</span>
           </label>
@@ -131,7 +141,7 @@
       
         <div class="radio-wrapper">
           <label class="radio-button">
-            <input type="radio"  name="gender" id="option3" value="Other">
+            <input type="radio"  name="gender" id="option3" value="Other"  <?php echo ($sexo == 'Other') ? 'checked' : '' ?>>
             <span class="radio-checkmark"></span>
             <span class="radio-label">Other</span>
           </label>
@@ -139,11 +149,11 @@
       </div>
     <div>
         <label for="data_nascimento"><b>Age:</b></label>
-        <input type="date" name="data_nascimento" id="data_nascimento" required>
+        <input type="date" name="data_nascimento" id="data_nascimento" value="<?php echo $data_nasc?>" required>
     </div>
-      <input type="text" placeholder="City" name="city" class="input"/>
-      <input type="text" placeholder="State" name="state" class="input"/>
-      <input type="text" placeholder="Adress" name="adress" class="input"/>
+      <input type="text" placeholder="City" name="city" class="input full" value="<?php echo $city?>"/>
+      <input type="text" placeholder="State" name="state" class="input full" value="<?php echo $state?>" />
+      <input type="text" placeholder="Adress" name="adress" class="input full" value="<?php echo $adress?>"/>
 
       <div class="login-with">
         <div class="button-log"></div>
@@ -186,7 +196,8 @@
           </svg>
         </div>
       </div>
-      <button type="submit" name="submit" class="button-confirm">Submit</button>
+      <input type="hidden" name="id" value="<?php echo $id ?>">
+      <button type="submit" name="update" class="button-confirm">Update</button>
     </form>
 </div>
 
