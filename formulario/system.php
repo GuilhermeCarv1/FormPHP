@@ -9,8 +9,17 @@
         header('Location: login.php');
     }
     $logado = $_SESSION['name'];
-    $sql = "SELECT * FROM usuarios ORDER BY id DESC";
+    if(!empty($_GET['search']))
+    {
+       $ 
+       echo "contem algo, pesquisar";
+    }
+    else
+    {
+      echo "não temos nada, trazer todos os registros";
+    }
 
+    $sql = "SELECT * FROM usuarios ORDER BY id DESC";
     $result = $conexao->query($sql);
 
    
@@ -33,6 +42,12 @@
         display: flex; 
         justify-content: center;
          }
+
+         .box-search{
+            display: flex;
+            justify-content: center;
+            gap: .1%;
+         }
     </style>
 
 </head>
@@ -51,6 +66,20 @@
   <?php
     echo "<h1>Great, Welcome <ul>$logado</ul> </h1>";
   ?>
+ 
+ 
+  <div class="box-search">
+        <input type="search" class="form-control w-25" placeholder="Search" id="search">  
+        
+        <button onclick="searchData()" class="btn btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+      </svg>
+  </button>
+  </div>
+
+
+
   <div class="m-3">
       <table class="table table-dark table-hover table-bordered ">
         <thead>
@@ -103,6 +132,20 @@
         </tbody>
       </table>
   </div>
-  
 </body>
+<script>
+    var search = document.getElementByid('search'); 
+
+    search.addEventListener("Keydown", function(event) {
+      if (event.key == "Enter")
+      {
+          searchData();
+      }
+    });
+
+    function searchData()
+    {
+      window.location = 'system.php?search='+search.value;
+    }
+</script>
 </html>
