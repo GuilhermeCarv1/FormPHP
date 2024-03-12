@@ -21,7 +21,6 @@
       $sexo = $user_data['sexo'];
       $data_nasc = $user_data['data_nasc'];
       $city =  $user_data['city'];
-      $state = $user_data['state'];
       $adress = $user_data['adress'];
 
     }
@@ -152,7 +151,6 @@
         <input type="date" name="data_nascimento" id="data_nascimento" value="<?php echo $data_nasc?>" required>
     </div>
       <input type="text" placeholder="City" name="city" class="input full" value="<?php echo $city?>"/>
-      <input type="text" placeholder="State" name="state" class="input full" value="<?php echo $state?>" />
       <input type="text" placeholder="Adress" name="adress" class="input full" value="<?php echo $adress?>"/>
 
       <div class="login-with">

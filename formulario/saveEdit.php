@@ -11,7 +11,6 @@ if(isset($_POST['update']))
     $sexo = $_POST['gender'];
     $data_nasc = $_POST['data_nascimento'];
     $city =  $_POST['city'];
-    $state = $_POST['state'];
     $adress = $_POST['adress'];
 
     $sqlUpdate = "UPDATE usuarios SET name= '$name',email='$email',password='$password',phone='$phone',sexo='$sexo',data_nasc='$data_nasc',city='$city',state='$state',adress='$adress'

@@ -11,15 +11,16 @@
     $logado = $_SESSION['name'];
     if(!empty($_GET['search']))
     {
-       $ 
-       echo "contem algo, pesquisar";
+       
+       $data = $_GET['search'];
+       $sql = "SELECT * FROM usuarios WHERE id LIKE '%$data%' or name LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
     }
     else
     {
-      echo "não temos nada, trazer todos os registros";
+      $sql = "SELECT * FROM usuarios ORDER BY id DESC";
     }
 
-    $sql = "SELECT * FROM usuarios ORDER BY id DESC";
+   
     $result = $conexao->query($sql);
 
    
@@ -91,7 +92,6 @@
             <th scope="col">Phone</th>
             <th scope="col">Sexo</th>
             <th scope="col">Birth data</th>
-            <th scope="col">State</th>
             <th scope="col">City</th>
             <th scope="col">Adress</th>
             <th scope="col">...</th>
@@ -110,7 +110,6 @@
                   echo "<td>" .$user_data['sexo']. "</td>";
                   echo "<td>" .$user_data['data_nasc']. "</td>";
                   echo "<td>" .$user_data['city']. "</td>";
-                  echo "<td>" .$user_data['state']. "</td>";
                   echo "<td>" .$user_data['adress']. "</td>";
                   echo "<td>
                       <a class='btn btn-sm btn-primary' href='./edit.php?id=$user_data[id]'>
@@ -134,9 +133,9 @@
   </div>
 </body>
 <script>
-    var search = document.getElementByid('search'); 
+    var search = document.getElementById('search'); 
 
-    search.addEventListener("Keydown", function(event) {
+    search.addEventListener("keydown", function(event) {
       if (event.key == "Enter")
       {
           searchData();

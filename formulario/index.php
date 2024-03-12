@@ -142,7 +142,7 @@
         <input type="date" name="data_nascimento" id="data_nascimento" required>
     </div>
       <input type="text" placeholder="City" name="city" class="input"/>
-      <input type="text" placeholder="State" name="state" class="input"/>
+      
       <input type="text" placeholder="Adress" name="adress" class="input"/>
 
       <div class="login-with">
